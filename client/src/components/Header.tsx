@@ -11,6 +11,10 @@ export type HeaderProps = {
 
 const StyledDiv = styled.header`
     display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid;
+    border-color: ${(props) => props.theme.colors.olive6};
 
     h1 {
         margin-right: auto;
