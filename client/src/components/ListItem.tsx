@@ -11,6 +11,7 @@ const StyledDiv = styled.div`
 
 const Label = styled.label`
     margin-left: 15px;
+    flex: 1;
 `;
 
 export type LiteItemProp = CheckboxProps & {
