@@ -8,7 +8,7 @@ const StyledCheckbox = styled(CheckboxPrimitive.Root)`
     background-color: white;
     width: 25px;
     height: 25px;
-    border-radius: 2px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,6 +23,7 @@ const StyledCheckbox = styled(CheckboxPrimitive.Root)`
 
 const StyledIndicator = styled(CheckboxPrimitive.Indicator)`
     color: ${(props) => props.theme.grass11};
+    margin-top: 3px;
 `;
 
 export const Checkbox: React.FC<CheckboxProps> = (props) => (
