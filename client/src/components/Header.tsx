@@ -17,7 +17,10 @@ const StyledDiv = styled.header`
     border-color: ${(props) => props.theme.colors.olive6};
 
     h1 {
+        overflow: hidden;
         margin-right: auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 `;
 
