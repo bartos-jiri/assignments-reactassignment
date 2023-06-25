@@ -10,12 +10,18 @@ server.use(jsonServer.bodyParser);
 server.patch('/items/:id/done', (req, res) => {
   const id = parseInt(req.params['id']);
 
-  const value = router.db.get('items').find({ id }).assign({
-    done: true,
-    finishedAt: Date.now()
-  }).value();
+  const todo = router.db.get('items').find({ id }).value();
 
-  return res.json(value);
+  if (!todo) {
+    return res.status(404).send();
+  }
+
+  todo.done = true;
+  todo.finishedAt = Date.now();
+
+  router.db.write();
+
+  return res.json(todo);
 })
 
 server.use((req, res, next) => {
@@ -23,7 +29,7 @@ server.use((req, res, next) => {
     req.body.createdAt = Date.now();
   }
 
-  if (req.method === 'PATCH' && !req.body.done) {
+  if (req.method === 'PATCH' && req.body.done === false) {
     req.body.finishedAt = undefined;
   }
 
