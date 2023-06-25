@@ -18,6 +18,7 @@ const StyledDiv = styled.header`
         color: #fff;
         width: 25px;
         height: 25px;
+        margin-left: auto;
     }
 `;
 
