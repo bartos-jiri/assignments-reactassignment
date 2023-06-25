@@ -10,16 +10,29 @@ const meta = {
         handleEdit: { action: "edited" },
     },
 } as Meta<typeof ListItem>;
+
 export default meta;
+
 type Story = StoryObj<typeof ListItem>;
+
 export const ToDo: Story = {
     args: {
         label: "Lorem ipsum dolor",
     },
 };
+
 export const Done: Story = {
     args: {
         ...ToDo.args,
         checked: true,
+    },
+};
+
+export const Hovered: Story = {
+    args: {
+        ...ToDo.args,
+    },
+    parameters: {
+        pseudo: { hover: true },
     },
 };
