@@ -17,7 +17,7 @@ const StyledCheckbox = styled(CheckboxPrimitive.Root)`
         background-color: ${(props) => props.theme.colors.grass3};
     }
     &:focus {
-        box-shadow: 0 2px 10px black;
+        box-shadow: ${(props) => `0 2px 10px ${props.theme.colors.blackA9}`};
     }
 `;
 
