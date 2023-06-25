@@ -7,10 +7,19 @@ import { Button } from "../Button";
 
 const StyledForm = styled.form`
     display: flex;
+
+    button {
+        margin-left: 4px;
+    }
 `;
 
 export const Form = (props: FormProps): JSX.Element => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
     const [data, setData] = useState(props.initialValue);
+
+    React.useEffect(() => {
+        inputRef.current?.focus();
+    }, []);
 
     return (
         <StyledForm
@@ -22,7 +31,11 @@ export const Form = (props: FormProps): JSX.Element => {
                 props.handleCancel();
             }}
         >
-            <Input initialValue={props.initialValue} handleInputChange={(value: string) => setData(value)} />
+            <Input
+                ref={inputRef}
+                initialValue={props.initialValue}
+                handleInputChange={(value: string) => setData(value)}
+            />
             <Button type={"submit"} color="green">
                 <CheckIcon />
             </Button>
