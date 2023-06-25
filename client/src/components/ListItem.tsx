@@ -7,6 +7,14 @@ import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+
+    div {
+        display: none;
+    }
+
+    :hover div {
+        display: flex;
+    }
 `;
 
 const Label = styled.label`
@@ -24,11 +32,13 @@ export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleE
     <StyledDiv>
         <Checkbox {...checkboxProps} />
         <Label>{label}</Label>
-        <button onClick={() => handleEdit()}>
-            <TrashIcon />
-        </button>
-        <button onClick={() => handleRemoval()}>
-            <Pencil1Icon />
-        </button>
+        <div>
+            <button onClick={() => handleEdit()}>
+                <TrashIcon />
+            </button>
+            <button onClick={() => handleRemoval()}>
+                <Pencil1Icon />
+            </button>
+        </div>
     </StyledDiv>
 );
