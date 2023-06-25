@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import { deleteTodo, updateTodo } from "./api";
+import { deleteTodo, setTodoDone, updateTodo } from "./api";
 import { ListItem } from "./components/ListItem";
 import { Todo } from "./types";
 
@@ -27,6 +27,12 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, done }) =
         },
     });
 
+    const { mutate: setDone } = useMutation(() => setTodoDone(id), {
+        onSuccess: () => {
+            queryClient.invalidateQueries("todos");
+        },
+    });
+
     return (
         <ListItem
             checked={done}
@@ -34,7 +40,10 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, done }) =
             handleEdit={(title) => update({ title })}
             handleRemoval={remove}
             onCheckedChange={(done) => {
-                if (done !== "indeterminate") {
+                if (done === true) {
+                    setDone();
+                }
+                if (done === false) {
                     update({ done });
                 }
             }}
