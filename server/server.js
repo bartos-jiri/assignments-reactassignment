@@ -22,6 +22,11 @@ server.use((req, res, next) => {
   if (req.method === "POST") {
     req.body.createdAt = Date.now();
   }
+
+  if (req.method === 'PATCH' && !req.body.done) {
+    req.body.finishedAt = undefined;
+  }
+
   next();
 });
 
