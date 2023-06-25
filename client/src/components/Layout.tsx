@@ -12,4 +12,7 @@ export const Layout = styled.main`
     min-height: 50vh;
     display: flex;
     flex-direction: column;
+    footer {
+        margin-top: auto;
+    }
 `;
