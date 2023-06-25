@@ -13,7 +13,7 @@ export const TodoList: React.FC = () => {
     return (
         <List>
             {todos.map((todo) => (
-                <TodoListItem {...todo} />
+                <TodoListItem key={todo.id} {...todo} />
             ))}
         </List>
     );
