@@ -19,12 +19,12 @@ const ColorCss = css`
             case "green":
                 return props.theme.colors.grass9;
             default:
-                return "transparent";
+                return "#fff";
         }
     }};
     color: ${(props: ThemeProps<any> & ButtonProps) => {
         switch (props.color) {
-            case "transparent":
+            case "white":
                 return props.theme.colors.blackA;
             default:
                 return "#fff";
@@ -33,7 +33,7 @@ const ColorCss = css`
 `;
 
 type ButtonProps = {
-    color?: "red" | "green" | "transparent";
+    color?: "red" | "green" | "white";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = styled.button`
@@ -59,6 +59,6 @@ const StyledButton = styled.button`
     }
 `;
 
-export const Button: React.FC<ButtonProps> = ({ color = "transparent", ...buttonProps }) => {
+export const Button: React.FC<ButtonProps> = ({ color = "white", ...buttonProps }) => {
     return <StyledButton color={color} {...buttonProps} />;
 };
