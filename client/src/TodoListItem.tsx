@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import { updateTodo } from "./api";
+import { deleteTodo, updateTodo } from "./api";
 import { ListItem } from "./components/ListItem";
 
 type TodoListItemProps = {
@@ -11,22 +11,17 @@ type TodoListItemProps = {
 export const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, done }) => {
     const queryClient = useQueryClient();
 
-    const { mutate } = useMutation((title: string) => updateTodo(id, { title }), {
+    const { mutate: update } = useMutation((title: string) => updateTodo(id, { title }), {
         onSuccess: () => {
             queryClient.invalidateQueries("todos");
         },
     });
 
-    return (
-        <ListItem
-            checked={done}
-            label={title}
-            handleEdit={(title: string) => {
-                mutate(title);
-            }}
-            handleRemoval={() => {
-                console.log("delete todo");
-            }}
-        />
-    );
+    const { mutate: remove } = useMutation(() => deleteTodo(id), {
+        onSuccess: () => {
+            queryClient.invalidateQueries("todos");
+        },
+    });
+
+    return <ListItem checked={done} label={title} handleEdit={update} handleRemoval={remove} />;
 };

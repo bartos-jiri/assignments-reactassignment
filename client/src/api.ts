@@ -26,3 +26,9 @@ export const updateTodo = (id: number, data: Omit<Partial<Todo>, "id">): Promise
         body: JSON.stringify(data),
     }).then((res) => res.json());
 };
+
+export const deleteTodo = async (id: number): Promise<void> => {
+    await fetch(`http://localhost:3000/items/${id}`, {
+        method: "DELETE",
+    });
+};
