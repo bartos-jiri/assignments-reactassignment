@@ -34,7 +34,7 @@ const ColorCss = css`
 
 type ButtonProps = {
     color?: "red" | "green" | "transparent";
-} & React.HTMLAttributes<HTMLButtonElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = styled.button`
     all: unset;
