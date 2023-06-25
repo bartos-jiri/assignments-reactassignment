@@ -6,7 +6,13 @@ import { TodoHeader } from "./TodoHeader";
 import { TodoList } from "./TodoList";
 import { TodoFooter } from "./TodoFooter";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
+});
 
 export const App: React.FC = () => {
     return (

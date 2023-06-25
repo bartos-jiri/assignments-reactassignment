@@ -15,21 +15,25 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({ id, title, done }) =
     const { mutate: update } = useMutation(
         (data: Pick<Partial<Todo>, "title" | "done">) => updateTodo(id, { ...data }),
         {
-            onSuccess: () => {
-                queryClient.invalidateQueries("todos");
+            onSuccess: (data) => {
+                queryClient.setQueriesData<Todo[]>("todos", (old) =>
+                    (old || []).filter((t) => t.id !== data.id).concat(data)
+                );
             },
         }
     );
 
     const { mutate: remove } = useMutation(() => deleteTodo(id), {
         onSuccess: () => {
-            queryClient.invalidateQueries("todos");
+            queryClient.setQueriesData<Todo[]>("todos", (old) => (old || []).filter((t) => t.id !== id));
         },
     });
 
     const { mutate: setDone } = useMutation(() => setTodoDone(id), {
-        onSuccess: () => {
-            queryClient.invalidateQueries("todos");
+        onSuccess: (data) => {
+            queryClient.setQueriesData<Todo[]>("todos", (old) =>
+                (old || []).filter((t) => t.id !== data.id).concat(data)
+            );
         },
     });
 
