@@ -9,19 +9,30 @@ import { Button } from "./Button";
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    padding: 2px;
+    border-radius: 14px;
 
     div {
         display: none;
+        button {
+            margin-left: 4px;
+        }
     }
 
     :hover div {
         display: flex;
+    }
+
+    > form {
+        margin-left: 2px;
     }
 `;
 
 const Label = styled.label`
     margin-left: 15px;
     flex: 1;
+    text-decoration: ${(props: { crossed: boolean }) => (props.crossed ? "line-through" : "initial")};
+    opacity: ${(props: { crossed: boolean }) => (props.crossed ? 0.5 : "initial")};
 `;
 
 export type LiteItemProp = CheckboxProps & {
@@ -44,12 +55,12 @@ export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleE
 
     return (
         <StyledDiv>
+            <Checkbox checked={checked} disabled={checkboxProps.disabled || showForm} {...checkboxProps} />
             {showForm ? (
                 <Form handleSubmit={handleFormSubmit} handleCancel={handleFormCancel} initialValue={label} />
             ) : (
                 <>
-                    <Checkbox checked={checked} {...checkboxProps} />
-                    <Label>{label}</Label>
+                    <Label crossed={checked === true}>{label}</Label>
                     <div>
                         <Button onClick={() => setShowForm(true)}>
                             <Pencil1Icon />
