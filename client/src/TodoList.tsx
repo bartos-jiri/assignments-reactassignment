@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { List } from "./components/List";
 import { getTodos } from "./api";
-import { ListItem } from "./components/ListItem";
+import { TodoListItem } from "./TodoListItem";
 
 export const TodoList: React.FC = () => {
     const { data: todos, isLoading } = useQuery("todos", getTodos);
@@ -13,15 +13,7 @@ export const TodoList: React.FC = () => {
     return (
         <List>
             {todos.map((todo) => (
-                <ListItem
-                    label={todo.title}
-                    handleEdit={() => {
-                        console.log("edit todo");
-                    }}
-                    handleRemoval={() => {
-                        console.log("delete todo");
-                    }}
-                />
+                <TodoListItem {...todo} />
             ))}
         </List>
     );
