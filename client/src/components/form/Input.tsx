@@ -16,7 +16,7 @@ const StyledInput = styled.input`
     }
 `;
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref): JSX.Element => {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
     const [value, setValue] = useState(props.initialValue);
 
     return (

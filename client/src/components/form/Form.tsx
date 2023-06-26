@@ -13,9 +13,9 @@ const StyledForm = styled.form`
     }
 `;
 
-export const Form = (props: FormProps): JSX.Element => {
+export const Form: React.FC<FormProps> = ({ handleCancel, handleSubmit, initialValue }) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
-    const [data, setData] = useState(props.initialValue);
+    const [data, setData] = useState(initialValue);
 
     React.useEffect(() => {
         inputRef.current?.focus();
@@ -25,17 +25,11 @@ export const Form = (props: FormProps): JSX.Element => {
         <StyledForm
             onSubmit={(e) => {
                 e.preventDefault();
-                props.handleSubmit(data);
+                handleSubmit(data);
             }}
-            onReset={() => {
-                props.handleCancel();
-            }}
+            onReset={handleCancel}
         >
-            <Input
-                ref={inputRef}
-                initialValue={props.initialValue}
-                handleInputChange={(value: string) => setData(value)}
-            />
+            <Input ref={inputRef} initialValue={initialValue} handleInputChange={setData} />
             <Button type={"submit"} color="green">
                 <CheckIcon />
             </Button>
