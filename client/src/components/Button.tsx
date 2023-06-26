@@ -30,6 +30,19 @@ const ColorCss = css`
                 return "#fff";
         }
     }};
+    :focus {
+        outline: 1px solid
+            ${(props: ThemeProps<any> & ButtonProps) => {
+                switch (props.color) {
+                    case "red":
+                        return props.theme.colors.red7;
+                    case "green":
+                        return props.theme.colors.olive9;
+                    default:
+                        return props.theme.colors.blackA;
+                }
+            }};
+    }
 `;
 
 type ButtonProps = {
