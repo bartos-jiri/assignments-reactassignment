@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { deleteTodo, setTodoDone, updateTodo } from "./api";
-import { ListItem } from "./components/ListItem";
+import { ListItem } from "../components/ListItem";
 import { Todo } from "./types";
 
 type TodoListItemProps = {

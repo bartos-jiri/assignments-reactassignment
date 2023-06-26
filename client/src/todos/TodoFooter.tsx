@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Footer } from "./components/Footer";
+import { Footer } from "../components/Footer";
 import { getTodos } from "./api";
 
 export const TodoFooter: React.FC = () => {

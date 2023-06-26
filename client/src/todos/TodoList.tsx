@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { List } from "./components/List";
+import { List } from "../components/List";
 import { getTodos } from "./api";
 import { TodoListItem } from "./TodoListItem";
 
